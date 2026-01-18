@@ -1,5 +1,3 @@
-// http://csbin.io/callbacks 
-
 // Type JavaScript here and click "Run Code" or press Ctrl + s
 console.log('Hello, world!');
 
@@ -69,27 +67,95 @@ console.log(mapWith([1,2,3],addTwo));
 
 // Challenge 6
 function reduce(array, callback, initialValue) {
-
+	let accumulator = initialValue;
+  
+  for(let i = 0; i < array.length; i++) {
+    accumulator = callback(accumulator, array[i]);
+  }
+  
+  return accumulator;
 }
+
+const nums = [4,1,3];
+const add = function(a,b) { return a + b };
+console.log(reduce(nums, add, 0));
 
 
 // Challenge 7
 function intersection(arrays) {
+  
+	let acc = arrays[0]; // [5,10,15,20]
+  let newArray = [];
+  
+  for(let i = 1; i < arrays.length; i++) {
+    
+    newArray = [];
+    
+  	for (let j = 0; j < acc.length; j++) {
+      if (arrays[i].includes(acc[j])) {
+        newArray.push(acc[j]);
+      }
+    } 
+    
+    acc = newArray;
+  }
+  
+  return acc;
 
 }
 
-// console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
+// secondWay Challenge 7 with reduce()
+function intersectionWithReduce(arrays) {
+  return arrays.reduce((acc, curr) => {
+    return acc.filter(el => curr.includes(el));
+  });
+}
+
+console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
+
+console.log(intersectionWithReduce([
+  [5,10,15,20],
+  [15,88,1,5,7],
+  [1,10,15,5,20]
+]));
 
 
 // Challenge 8
 function union(arrays) {
-
+	let result = [];
+  
+  for(let i = 0; i < arrays.length; i++) {
+  	for(let j = 0; j < arrays[i].length; j++) {
+       if(!result.includes(arrays[i][j])) {
+         	result.push(arrays[i][j]);
+       }
+    }  
+  }
+  
+  return result;
+  
+  
 }
 
-// console.log(union([[5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]]));
+// secondWay Challenge 8 with reduce()
+function unionWithReduce(arrays) {
+  return arrays.reduce((acc, curr) => {
+    curr.forEach(el => { 
+    	if(!acc.includes(el)) {
+        acc.push(el);
+      }
+    });
+    return acc; 
+  }, []);
+}
+
+
+
+console.log(union([[5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
 
+console.log(unionWithReduce([[5,10,15], [15,88,1,5,7], [100,15,10,1,5]]));
 
 // Challenge 9
 function objOfMatches(array1, array2, callback) {
