@@ -55,6 +55,7 @@ function addByX(x) {
   return function addItPls(num) {
     let result = step + num;
     console.log(result);
+    return result;
   }
   
   
@@ -77,16 +78,15 @@ addByFour(5); // => should return 9
 console.log("-----------------");
 // CHALLENGE 4
 function once(func) {
-	let hasRun = false; 
+	let hasRun = false;
   let result;
   
-  return function(n) {
+  return function(args) {
     if (!hasRun) {
-    	result = func(n);
-      return result;
+      result = func(args);
+      hasRun = true;
     }
     return result;
-    
   }
 }
 
@@ -96,37 +96,89 @@ console.log(onceFunc(4));  // => should log 6
 console.log(onceFunc(10));  // => should log 6
 console.log(onceFunc(9001));  // => should log 6
 
-
+console.log('------------- Challenge 5 ------------')
 // CHALLENGE 5
 function after(count, func) {
-
+  let counter = 0;
+  
+  
+  return function() {
+    counter++;
+    
+    if(counter === count) {
+      func();
+    } 
+    
+ 
+  }
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const called = function() { console.log('hello') };
-// const afterCalled = after(3, called);
-// afterCalled(); // => nothing is printed
-// afterCalled(); // => nothing is printed
-// afterCalled(); // => 'hello' is printed
+const called = function() { console.log('hello') };
+const afterCalled = after(3, called);
+afterCalled(); // => nothing is printed
+afterCalled(); // => nothing is printed
+afterCalled(); // => 'hello' is printed
 
 
+console.log('------------- Challenge 6 ------------')
 // CHALLENGE 6
 function delay(func, wait) {
-
+	return function(...args) {
+    setTimeout(() => {
+      func(...args);
+    }, wait)
+  }
 }
+
+function testSix(msg) {
+  console.log(msg);
+}
+
+const tryItOut = delay(testSix, 1000);
+tryItOut("Hehe SUII");
+
 
 
 // CHALLENGE 7
 function rollCall(names) {
-
+	let counter = 0;
+  
+  return function() {
+   
+    
+    /* Hardcoded 
+    if(counter === 1) {
+      console.log(names[0]);
+    } else if (counter === 2) {
+      console.log(names[1]);
+    } else if (counter === 3) {
+      console.log(names[2]);
+    } else {
+      console.log("Everyone accounted for");
+    }
+    */
+    
+    if (counter < names.length) {
+      console.log(names[counter]);
+      counter++;
+    } else {
+      console.log('Everyone Accounted For.');
+    }
+    
+    
+  }
+  
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
-// rollCaller() // => should log 'Victoria'
-// rollCaller() // => should log 'Juan'
-// rollCaller() // => should log 'Ruth'
-// rollCaller() // => should log 'Everyone accounted for'
+const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
+rollCaller() // => should log 'Victoria'
+rollCaller() // => should log 'Juan'
+rollCaller() // => should log 'Ruth'
+rollCaller() // => should log 'Everyone accounted for'
 
 
 // CHALLENGE 8
