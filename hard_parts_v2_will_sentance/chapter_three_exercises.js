@@ -139,7 +139,7 @@ function testSix(msg) {
 const tryItOut = delay(testSix, 1000);
 tryItOut("Hehe SUII");
 
-
+console.log('------------- Challenge 7 ------------')
 
 // CHALLENGE 7
 function rollCall(names) {
@@ -180,66 +180,142 @@ rollCaller() // => should log 'Juan'
 rollCaller() // => should log 'Ruth'
 rollCaller() // => should log 'Everyone accounted for'
 
-
+console.log('------------- Challenge 8 ------------')
 // CHALLENGE 8
 function saveOutput(func, magicWord) {
-
+  let result;
+  let objVal = {};
+  
+  return function(input) {
+		if (input !== magicWord) {
+    	result = func(input);  
+      objVal[input] = result;
+      return result;
+      
+    } else {
+      return objVal;
+    }
+    
+    
+  }
+  
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const multiplyBy2 = function(num) { return num * 2; };
-// const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
-// console.log(multBy2AndLog(2)); // => should log 4
-// console.log(multBy2AndLog(9)); // => should log 18
-// console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
+const multiplyBy2 = function(num) { return num * 2; };
+const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
+console.log(multBy2AndLog(2)); // => should log 4
+console.log(multBy2AndLog(9)); // => should log 18
+console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
 
-
+console.log('------------- Challenge 9 ------------')
 // CHALLENGE 9
 function cycleIterator(array) {
-
+  let result;
+	let counter = 0; 
+  
+  return function() {
+  	  if(counter < array.length) {
+        result = array[counter];
+        counter++;
+        return result;
+      } else if (counter === array.length) {
+        counter = 0;
+        result = array[counter];
+        return result;
+      }
+    
+    
+  }
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
-// const getDay = cycleIterator(threeDayWeekend);
-// console.log(getDay()); // => should log 'Fri'
-// console.log(getDay()); // => should log 'Sat'
-// console.log(getDay()); // => should log 'Sun'
-// console.log(getDay()); // => should log 'Fri'
+const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
+const getDay = cycleIterator(threeDayWeekend);
+console.log(getDay()); // => should log 'Fri'
+console.log(getDay()); // => should log 'Sat'
+console.log(getDay()); // => should log 'Sun'
+console.log(getDay()); // => should log 'Fri'
 
-
+console.log('------------- Challenge 10 ------------')
 // CHALLENGE 10
 function defineFirstArg(func, arg) {
-
+	let result;
+  
+  return function(...restOfArgs) {
+    result = func(arg, ...restOfArgs);
+    return result;
+  }
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const subtract = function(big, small) { return big - small; };
-// const subFrom20 = defineFirstArg(subtract, 20);
-// console.log(subFrom20(5)); // => should log 15
+const subtract = function(big, small) { return big - small; };
+const subFrom20 = defineFirstArg(subtract, 20);
+console.log(subFrom20(5)); // => should log 15
 
-
+console.log('------------- Challenge 11 ------------')
 // CHALLENGE 11
 function dateStamp(func) {
-
+	let result;
+  let timestamp = new Date();
+  let date = "date", output = "output";
+  
+  
+  return function(...args) {
+  	result = func(...args);
+    timestamp = Date.now();
+    let newObj = {};
+    newObj[date] = timestamp;
+    newObj[output] = result;
+    return newObj;
+    
+  }
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const stampedMultBy2 = dateStamp(n => n * 2);
-// console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
-// console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
+const stampedMultBy2 = dateStamp(n => n * 2);
+console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
+console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
 
-
+console.log('------------- Challenge 12 ------------')
 // CHALLENGE 12
 function censor() {
-
+	let strings = [];
+  let currentString = '';
+  
+  let firstTemp;
+  let secondTemp;
+  
+  return function(...stringArgs) {
+  	  if (stringArgs.length === 2) {
+        strings.push(stringArgs);
+      } else if(stringArgs.length === 1) {
+        currentString = stringArgs[0];
+        
+        for(let i = 0; i < strings.length; i++) {
+          currentString = currentString.replace('dogs', strings[0][1]);
+          currentString = currentString.replace('quick', strings[1][1]);
+    			return currentString;
+        }
+        
+        
+      }
+    
+    
+  }
+  
 }
 
 // /*** Uncomment these to check your work! ***/
-// const changeScene = censor();
-// changeScene('dogs', 'cats');
-// changeScene('quick', 'slow');
-// console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
+const changeScene = censor();
+changeScene('dogs', 'cats');
+changeScene('quick', 'slow');
+console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); 
+// => should log 'The slow, brown fox jumps over the lazy cats.'
 
 
 // CHALLENGE 13
