@@ -284,31 +284,32 @@ console.log(stampedMultBy2(6)); // => should log { date: (today's date), output:
 console.log('------------- Challenge 12 ------------')
 // CHALLENGE 12
 function censor() {
-	let strings = [];
-  let currentString = '';
-  
-  let firstTemp;
-  let secondTemp;
-  
-  return function(...stringArgs) {
-  	  if (stringArgs.length === 2) {
-        strings.push(stringArgs);
-      } else if(stringArgs.length === 1) {
-        currentString = stringArgs[0];
-        
-        for(let i = 0; i < strings.length; i++) {
-          currentString = currentString.replace('dogs', strings[0][1]);
-          currentString = currentString.replace('quick', strings[1][1]);
-    			return currentString;
-        }
-        
-        
+  const pairs = [];
+
+  return function(...args) {
+    // slučaj: učimo novu zamjenu
+    if (args.length === 2) {
+      pairs.push(args);
+    }
+
+    // slučaj: primjenjujemo sve zamjene
+    if (args.length === 1) {
+      let currentString = args[0];
+
+      for (let i = 0; i < pairs.length; i++) {
+        const find = pairs[i][0];
+        const replaceWith = pairs[i][1];
+
+        // globalna zamjena svih pojavljivanja
+        const regex = new RegExp(find, 'g');
+        currentString = currentString.replace(regex, replaceWith);
       }
-    
-    
-  }
-  
+
+      return currentString;
+    }
+  };
 }
+
 
 // /*** Uncomment these to check your work! ***/
 const changeScene = censor();
