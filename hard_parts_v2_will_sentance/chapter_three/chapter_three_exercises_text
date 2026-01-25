@@ -1,0 +1,82 @@
+# Closures, Scope, and Execution Context
+
+## Challenge 1
+Create a function `createFunction` that returns a new function. When the returned function is called, it should print `"hello"`.
+
+## Challenge 2
+Create a function `createFunctionPrinter` that accepts one input and returns a function. When the returned function is called, it should print the input that was provided when the function was created.
+
+## Challenge 3
+Examine the code for the `outer` function. Notice that we are returning a function that uses variables outside of its own scope (a closure). Uncomment the provided lines and deduce the output before executing. Then implement `addByX`, a function that returns a function which will add its argument by `x`.
+
+## Challenge 4
+Write a function `once` that accepts a callback and returns a new function. The returned function should call the callback and return its output only on the first invocation. On subsequent calls, it should return the previously returned value without calling the callback again.
+
+## Challenge 5
+Write a function `after` that takes a number (the number of calls required) as the first parameter and a callback as the second parameter. It should return a function that will call the callback only after it has been invoked the given number of times.
+
+## Challenge 6
+Write a function `delay` that accepts a callback as the first parameter and a wait time in milliseconds as the second parameter. Any additional arguments passed to the returned function should be forwarded to the callback when it is invoked after the wait time.
+
+## Challenge 7
+Write a function `rollCall` that accepts an array of names and returns a function. Each time the returned function is invoked it should log the next name in the array. When the end of the list is reached, subsequent calls can either do nothing or indicate completion.
+
+## Challenge 8
+Create a function `saveOutput` that accepts a function (which itself accepts one argument) and a string (used as a password). `saveOutput` should return a function that behaves like the original function but also stores input/output pairs. When called with the secret password, it should return the whole storage object instead of calling the original function.
+
+## Challenge 9
+Create a function `cycleIterator` that accepts an array and returns a function. The returned function takes no arguments; each invocation returns the next element of the array, and after reaching the end it cycles back to the beginning.
+
+## Challenge 10
+Create a function `defineFirstArg` that accepts a function and an argument. The provided function accepts at least one argument. `defineFirstArg` should return a new function that, when invoked, calls the original function with the provided first argument pre-filled, followed by any additional arguments supplied at call time.
+
+## Challenge 11
+Create a function `dateStamp` that accepts a function and returns a new function. The returned function should accept any number of arguments, call the original function with those arguments, and return an object with:
+- `date`: the current date as a string, and
+- `output`: the result from calling the original function.
+
+## Challenge 12
+Create a function `censor` that accepts no arguments and returns a function that can be used in two ways:
+- If called with two strings, it should store a mapping from the first string to the second string (to be used as a replacement).
+- If called with one string, it should return the string with any stored keys replaced by their mapped values.
+
+## Challenge 13
+Implement `createSecretHolder(secret)` which accepts any value as `secret` and returns an object with two methods:
+- `getSecret()` — returns the secret
+- `setSecret(newSecret)` — sets the secret to `newSecret`
+
+## Challenge 14
+Write a function `callTimes` that returns a new function. Each time the returned function is called it should return the number of times it has been invoked so far.
+
+## Challenge 15
+Create a function `roulette` that accepts a number `n` and returns a function. The returned function takes no arguments; it should return the string `"spin"` the first `n - 1` times it's called, return `"boom"` on the `n`‑th call, and after that always return `"reload to play again"` (or a similar message indicating the game is over).
+
+## Challenge 16
+Create a function `average` that accepts no arguments and returns a function. The returned function accepts either a number or no arguments:
+- If given a number, it adds it to an internal list and returns the current average of all numbers provided so far.
+- If called with no arguments, it returns the current average (or `0` / `NaN` depending on your chosen behavior for no inputs).
+
+## Challenge 17
+Create a function `makeFuncTester` that accepts an array of two‑element subarrays (pairs like `[input, expectedOutput]`) and returns a function that accepts a callback. The returned function should return `true` if the callback produces the expected output for every input pair; otherwise it should return `false`.
+
+## Challenge 18
+Create a function `makeHistory` that accepts a number `limit` (the maximum history length) and returns a function that accepts a string. The returned function will:
+- Save each string into a history of the most recent `limit` entries, and
+- Return a message indicating whether the action was recorded or if it matched the most recent action (for example, returning special messages for 'undo' or repeated commands).
+
+## Challenge 19
+Inspect the provided (commented out) test cases carefully if you need more clarity on the required behaviors for any of the above functions.
+
+---
+
+## Blackjack (Challenge)
+Create a function `blackjack` that accepts an array of numbers (values 1–11) and returns a `DEALER` function. The `DEALER` function accepts two arguments (both numbers) and returns a `PLAYER` function. Behavior:
+
+- On the first invocation of a `PLAYER` function, it returns the sum of the two numbers passed to the `DEALER`.
+- On the second invocation of that `PLAYER`, it will add the first number from the deck array to the previous sum and:
+  - If the new sum is 21 or below, return the new sum;
+  - If the new sum is over 21, return the string `"bust"`.
+- If a player has `"bust"`, every subsequent invocation of that `PLAYER` function should return the string `"you are done!"`.
+- If the player does not bust, further invocations continue to draw the next number from the deck array and return updated sums until bust or until the deck number would cause bust.
+
+Assume the provided deck array is long enough. Bonus: implement `blackjack` so the `DEALER` can produce multiple `PLAYER` functions that continue drawing from the deck where the previous player left off.
