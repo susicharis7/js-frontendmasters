@@ -32,3 +32,107 @@ console.log("Start");
     When that promise is resolved, logUser is invoked, and the result value from the promise is being passed as an argument to the logUser
      function
 */
+
+
+/* 
+    
+JS Engine sees the `fetch`, registers it, and then `fetch` is called on the call stack.
+A short execution context is created.
+
+Inside that context:
+- it tells the Web Browser: "here, take this HTTP request and resolve it"
+- it IMMEDIATELY returns a Promise
+
+That Promise represents a future value, so it is currently in:
+state: "pending"
+
+MENTAL MODEL of Promise (not real JS object):
+{
+  state,
+  result,
+  onFulfilledCallbacks,
+  onRejectedCallbacks
+}
+
+Right now:
+- state: "pending"
+- result: undefined
+- onFulfilledCallbacks: []
+- onRejectedCallbacks: []
+
+Immediately after `fetch` returns the Promise,
+BOTH `.then(...)` calls are executed SYNCHRONOUSLY.
+
+IMPORTANT:
+- `.then` itself runs immediately
+- but its CALLBACK does NOT run yet
+
+What `.then` does:
+- it REGISTERS the callback function
+- and pushes it into `onFulfilledCallbacks` of the Promise
+
+So after both `.then` calls:
+onFulfilledCallbacks = [
+  response => response.json(),
+  logUser
+]
+
+----------------------------------------
+
+When the Web Browser finishes the HTTP request:
+- the Promise is RESOLVED
+- state becomes "fulfilled"
+- result becomes Response object
+
+Now the Promise:
+{
+  state: "fulfilled",
+  result: Response,
+  onFulfilledCallbacks: [ ... ]
+}
+
+The JS engine now:
+- takes the FIRST callback from onFulfilledCallbacks
+- schedules it in the MICROTASK QUEUE
+(NOT directly in the call stack)
+
+When the call stack becomes empty:
+- Event Loop moves that microtask to the call stack
+- the callback is INVOKED with result as argument
+
+So effectively:
+(response => response.json())(result)
+
+----------------------------------------
+
+Inside that callback:
+response.json() is called
+
+IMPORTANT:
+- response.json() RETURNS A NEW PROMISE
+- because JSON parsing is async
+
+So now:
+- the Promise returned by the FIRST `.then` becomes "pending"
+- the SECOND `.then` (logUser) is NOT executed yet
+- it is WAITING for THIS NEW Promise
+
+MENTAL MODEL again:
+state: "pending"
+result: undefined
+onFulfilledCallbacks: [ logUser ]
+
+----------------------------------------
+
+When the JSON Promise resolves:
+- it provides the actual parsed data
+- state becomes "fulfilled"
+- result becomes the user object
+
+Now:
+- logUser is taken from onFulfilledCallbacks
+- scheduled into the microtask queue
+- when call stack is empty, it is moved to the stack
+- logUser(result) is invoked
+
+*/
