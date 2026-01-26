@@ -159,25 +159,46 @@ createPromise.then((val) => console.log(val));
 /* CHALLENGE 9 */
 
 class SecondClock {
+
   constructor(cb) {
-    
+		this.cb = cb;
+    this.counter = 0;
+    this.intervalId = null;
   }
-  // ADD METHODS HERE
+  
+  start() {
+   this.intervalId = setInterval(() => {
+      this.counter++;
+      
+     if (this.counter > 60) {
+       this.counter = 1;
+     }
+     
+     this.cb(this.counter);
+    }, 1000);
+  }
+  
+  reset() {
+    clearInterval(this.interval);
+    this.intervalId = null;
+    this.counter = 0;
+  }
+  
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
-// const clock = new SecondClock((val) => { console.log(val) });
-// console.log("Started Clock.");
-// clock.start();
-// setTimeout(() => {
-//     clock.reset();
-//     console.log("Stopped Clock after 6 seconds.");
-// }, 6000);
+const clock = new SecondClock((val) => { console.log(val) });
+console.log("Started Clock.");
+clock.start();
+setTimeout(() => {
+    clock.reset();
+    console.log("Stopped Clock after 6 seconds.");
+}, 6000);
 
 /* CHALLENGE 10 */
 
 function debounce(callback, interval) {
-  // ADD CODE HERE
+	
 }
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
