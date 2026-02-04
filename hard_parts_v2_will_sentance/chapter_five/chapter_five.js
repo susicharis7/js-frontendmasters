@@ -31,6 +31,15 @@ Promise {
 }
 */
 
+/* 
+    Sta zapravo .then() radi i sadrzi? 
+
+    .then(onFulfilledCallbacks)
+    - kad Promise dobije vrijednost, pozove onFulfilledCallbacks (njegovu funkciju) i ubaci tu vrijednost
+      od promisea resolvanog kao argument 
+    - dakle on ne dobije vrijednost odmah, vec registruje callback, i dobije vrijednost kroz event loop (microtask)
+
+*/
 console.log("Me First");
 
 /* fetch() can also do other HTTP Requests, it can take 2 arguments */
