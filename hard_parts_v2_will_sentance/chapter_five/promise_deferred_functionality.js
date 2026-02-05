@@ -95,3 +95,15 @@ console.log("Me first");
 
     
 */
+
+
+
+function logUser(user) {
+  console.log("USER:", user.name);
+}
+
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then(response => response.json()) // Whole arrow function is the callback function 
+  .then(logUser);
+
+console.log("Start");
