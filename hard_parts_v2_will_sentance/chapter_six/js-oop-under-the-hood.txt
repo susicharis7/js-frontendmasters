@@ -1,15 +1,15 @@
 JS OOP & PROTOTYPES — UNDER THE HOOD CHECKLIST
 
 CORE INTERNALS
-1. [[Prototype]]
-2. __proto__
-3. Object.prototype
-4. Prototype chain
+1. [[Prototype]]    **DONE**
+2. __proto__    ** DONE ** 
+3. Object.prototype ** DONE ** 
+4. Prototype chain ** DONE ** 
 5. Property lookup algorithm
 
 OBJECT CREATION
 6. Object literal {}
-7. Object.create(proto)
+7. Object.create(proto) **DONE**
 8. Constructor functions
 9. new keyword (4 steps)
 10. Function.prototype
