@@ -1,0 +1,57 @@
+JS OOP & PROTOTYPES — UNDER THE HOOD CHECKLIST
+
+CORE INTERNALS
+1. [[Prototype]]
+2. __proto__
+3. Object.prototype
+4. Prototype chain
+5. Property lookup algorithm
+
+OBJECT CREATION
+6. Object literal {}
+7. Object.create(proto)
+8. Constructor functions
+9. new keyword (4 steps)
+10. Function.prototype
+
+CLASSES (SYNTACTIC SUGAR)
+11. class syntax
+12. constructor method
+13. Instance vs prototype methods
+14. extends
+15. super()
+
+THIS BINDING
+16. this binding rules
+   - method call
+   - function call
+   - constructor call
+   - call / apply / bind
+   - arrow function (lexical this)
+
+MEMORY & PERFORMANCE
+17. Shared methods via prototype
+18. Instance vs prototype properties
+19. Function duplication problem
+
+ENCAPSULATION
+20. Closure-based encapsulation
+21. Private fields (#field)
+22. Public vs private API
+
+REFLECTION & INTROSPECTION
+23. hasOwnProperty
+24. in operator
+25. Object.getPrototypeOf()
+26. Object.setPrototypeOf()
+
+EDGE CASES
+27. Object.create(null)
+28. Overriding prototype methods
+29. Shadowing properties
+30. instanceof
+
+MENTAL MODEL
+31. Everything is an object (almost)
+32. Functions are objects
+33. Inheritance = delegation, not copying
