@@ -11,8 +11,8 @@ OBJECT CREATION
 6. Object literal {}
 7. Object.create(proto) **DONE**
 8. Constructor functions
-9. new keyword (4 steps)
-10. Function.prototype
+9. new keyword (4 steps) **DONE**
+10. Function.prototype **DONE**
 
 CLASSES (SYNTACTIC SUGAR)
 11. class syntax
@@ -27,7 +27,7 @@ THIS BINDING
    - function call
    - constructor call
    - call / apply / bind
-   - arrow function (lexical this)
+   - arrow function (lexical this) **DONE**
 
 MEMORY & PERFORMANCE
 17. Shared methods via prototype
@@ -40,13 +40,13 @@ ENCAPSULATION
 22. Public vs private API
 
 REFLECTION & INTROSPECTION
-23. hasOwnProperty
+23. hasOwnProperty **DONE**
 24. in operator
-25. Object.getPrototypeOf()
+25. Object.getPrototypeOf() **DONE** 
 26. Object.setPrototypeOf()
 
 EDGE CASES
-27. Object.create(null)
+27. Object.create(null) **DONE**
 28. Overriding prototype methods
 29. Shadowing properties
 30. instanceof
