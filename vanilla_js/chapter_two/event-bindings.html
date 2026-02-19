@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Binding Examples</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    section { margin-bottom: 30px; }
+    #box, #pad {
+      width: 220px;
+      height: 120px;
+      border: 2px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      user-select: none;
+    }
+    #pad { border-style: dashed; }
+  </style>
+</head>
+<body>
+
+  <h1>Event Binding Demo</h1>
+
+  <!-- CLICK / DBLCLICK -->
+  <section>
+    <button id="btn">Click me</button>
+    <button id="btn2">Double click me</button>
+  </section>
+
+  <!-- CHANGE -->
+  <section>
+    <label>
+      Choose:
+      <select id="sel">
+        <option value="js">JavaScript</option>
+        <option value="ts">TypeScript</option>
+      </select>
+    </label>
+  </section>
+
+  <!-- KEYBOARD -->
+  <section>
+    <input id="inp" placeholder="Type here" />
+  </section>
+
+  <!-- MOUSEOVER / MOUSEOUT -->
+  <section>
+    <div id="box">Hover me</div>
+  </section>
+
+  <!-- POINTER -->
+  <section>
+    <div id="pad">Pointer down here</div>
+  </section>
+
+  <script>
+    // LOAD
+    window.addEventListener("load", () => {
+      console.log("window load fired (everything loaded)");
+    });
+
+    // CLICK
+    document.querySelector("#btn").addEventListener("click", () => {
+      console.log("clicked");
+    });
+
+    // DBLCLICK
+    document.querySelector("#btn2").addEventListener("dblclick", () => {
+      console.log("double-clicked");
+    });
+
+    // CHANGE
+    document.querySelector("#sel").addEventListener("change", (e) => {
+      console.log("changed to:", e.target.value);
+    });
+
+    // KEYBOARD
+    const inp = document.querySelector("#inp");
+
+    inp.addEventListener("keydown", (e) => {
+      console.log("keydown:", e.key);
+    });
+
+    inp.addEventListener("keyup", (e) => {
+      console.log("keyup:", e.key);
+    });
+
+    // MOUSEOVER / MOUSEOUT
+    const box = document.querySelector("#box");
+
+    box.addEventListener("mouseover", () => {
+      box.textContent = "mouse over";
+    });
+
+    box.addEventListener("mouseout", () => {
+      box.textContent = "mouse out";
+    });
+
+    // POINTER
+    const pad = document.querySelector("#pad");
+
+    pad.addEventListener("pointerdown", () => {
+      pad.textContent = "pointer down detected";
+    });
+
+    // DOMContentLoaded
+    window.addEventListener("DOMContentLoaded", () => {
+      console.log("DOM fully parsed");
+    });
+
+    // SCROLL
+    window.addEventListener("scroll", () => {
+      console.log("scrolling");
+    });
+
+    // FOCUS
+    inp.addEventListener("focus", () => {
+      console.log("input focused");
+    });
+
+    inp.addEventListener("blur", () => {
+      console.log("input blurred");
+    });
+
+    // POPSTATE (browser navigation)
+    window.addEventListener("popstate", () => {
+      console.log("history navigation occurred");
+    });
+  </script>
+
+</body>
+</html>
