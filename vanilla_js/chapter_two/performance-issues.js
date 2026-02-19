@@ -28,3 +28,18 @@ document.querySelector("span#badge");
 // We can do
 let nav = document.querySelector("nav")
 nav.querySelector("span#badge")
+
+
+
+/*
+ For some reason, even if we have `defer` in our script tag, in some browsers DOM is still not finished with memory
+ That is why we have DOMContentLoaded for event listener 
+ It tells us when the DOM is ready for work (manipulation)
+
+ It is also better than "load", since it is old and we have to wait for everything to finish, 
+ which means we might miss the chance to manipulate DOM earlier 
+*/
+ window.addEventListener("DOMContentLoaded", () => {
+    let nav = document.querySelector("nav");
+    console.log(nav);
+ })
