@@ -3,5 +3,5 @@ self.onmessage = (event) => {
   for (let i = 0; i < event.data; i++) {
     sum += i;
   }
-  self.postMessage(sum);
+  self.postMessage(sum); // through postMessage, worker communicates with main thread
 };
