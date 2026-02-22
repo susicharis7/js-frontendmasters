@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Library</title>
+</head>
+<body>
+
+    <section>
+        <nav id="mainNav">
+            <span id="badge">3</span>
+        </nav>
+    </section>
+
+    <section>
+        <ul>
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+        </ul>
+    </section>
+
+    <section>
+        <button id="btn">Click</button>
+        <button id="secBtn">Click me!</button>
+    </section>
+    
+
+
+    <script nodefer>
+        // Section 1
+        const $ = (args) => { return document.querySelector(args) }
+        const nav = $("#mainNav");
+        console.log("$:", nav);
+
+
+        // Section 2
+        const $$ = (args) => document.querySelectorAll(args);
+        const items = $$("li");
+        console.log("$$: ", items);
+
+        items.forEach(li => console.log(li.textContext));
+        const arr = [...$$("li")];
+        console.log(arr);
+
+
+        // Section 3
+        HTMLElement.prototype.on = (a,b,c) => this.addEventListener(a,b,c);
+        const btn = $("#btn");
+        btn.on("click", () => {
+            console.log("clicked!");
+        });
+
+
+
+        // Section 4
+        HTMLElement.prototype.off = (a,b) => this.removeEventListener(a,b);
+        const secBtn = $("#secBtn");
+        secBtn.off("click", () => {
+            console.log("off invoked");
+        });
+
+        setTimeout(() => {
+            secBtn.off("click", () => {});
+            console.log("listener removed");
+        }, 5000);
+
+    </script>
+    
+</body>
+</html>
