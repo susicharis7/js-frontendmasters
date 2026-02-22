@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    <style>
+        .box {
+            height: 200px;
+            overflow: auto;
+            border: 2px solid black;
+            margin-bottom: 40px;
+        }
+
+        .content {
+            height: 2000px;
+            background: linear-gradient(white, lightgray);
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h2>Without Passive (Scroll may feel blocked) </h2>
+    <div id="box1" class="box">
+        <div class="content"></div>
+    </div>
+
+    <h2>With Passive (Scroll is smooth) </h2>
+    <div id="box2" class="box">
+        <div class="content"></div>
+    </div>
+
+    <script defer>
+
+        function heavyWork() {
+            const start = performance.now();
+            while (performance.now() - start < 150) {
+                // blocks main thread ~ 150ms
+            }
+        }
+
+        // WITHOUT PASSIVE
+        document.querySelector("#box1").addEventListener("wheel", (e) => {
+            heavyWork();
+        });
+
+        // WITH PASSIVE
+        document.querySelector("#box2").addEventListener("wheel", (e) => {
+            heavyWork();
+        }, {passive: true});
+    </script>
+
+    
+</body>
+</html>
