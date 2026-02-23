@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History API Test</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/profile">Profile</a>
+    </nav>
+
+    <h1 id="view"></h1>
+
+    <script type="module">
+
+        const Router = {
+            init: () => {
+                document.querySelectorAll("a.navlink").forEach(link => {
+                    link.addEventListener("click", (e) => {
+                        e.preventDefault();
+
+                        const route = e.target.href;
+                        Router.go(route);
+                    });
+                });
+
+                window.addEventListener("popstate", () => {
+                    Router.go(location.pathname, false);
+                });
+            },
+
+            go: (route, addToHistory = true) => {
+
+                if (addToHistory) {
+                    history.pushState(null, null, route);
+                };
+
+                document.getElementById("view").textContent = "Current route: " + route;
+                console.log("Route: ", route, ", addToHistory: ", addToHistory);
+            }
+
+            
+        };
+
+
+        Router.init();
+
+    </script>
+</body>
+</html>
