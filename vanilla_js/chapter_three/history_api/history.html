@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History API Test</title>
+    <title>History API Router Test</title>
 </head>
 <body>
     <nav>
@@ -14,15 +14,15 @@
 
     <h1 id="view"></h1>
 
-    <script type="module">
 
+    <script type="module">
         const Router = {
             init: () => {
-                document.querySelectorAll("a.navlink").forEach(link => {
-                    link.addEventListener("click", (e) => {
-                        e.preventDefault();
+                document.querySelectorAll("nav a").forEach(link => {
+                    link.addEventListener("click", (event) => {
+                        event.preventDefault();
 
-                        const route = e.target.href;
+                        const route = event.currentTarget.getAttribute("href");
                         Router.go(route);
                     });
                 });
@@ -35,19 +35,17 @@
             go: (route, addToHistory = true) => {
 
                 if (addToHistory) {
-                    history.pushState(null, null, route);
-                };
+                    history.pushState(null, "", route);
+                }
 
                 document.getElementById("view").textContent = "Current route: " + route;
-                console.log("Route: ", route, ", addToHistory: ", addToHistory);
-            }
+                console.log("Route: ", route, " addToHistory: ", addToHistory);
+            },
 
-            
+
         };
 
-
         Router.init();
-
     </script>
 </body>
 </html>
