@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shadow DOM vs Light DOM</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+    #changeNameBtn {
+      margin-top: 14px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Shadow DOM vs Light DOM</h2>
+
+  <user-card id="card" name="Amina" role="Frontend Developer">
+    <p>I am LIGHT DOM.</p>
+  </user-card>
+
+  <button id="changeNameBtn" type="button">Change name attribute</button>
+
+  <script>
+    class UserCard extends HTMLElement {
+      static get observedAttributes() {
+        return ["name", "role"];
+      }
+
+      constructor() {
+        super();
+        this.attachShadow({ mode: "open" }); // SHADOW DOM root
+      }
+
+      connectedCallback() {
+      
+        this.render();
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+      
+        if (oldValue !== newValue) {
+          console.log(`[attributeChangedCallback] ${name}: ${oldValue} -> ${newValue}`);
+          this.render();
+        }
+      }
+
+      render() {
+        const name = this.getAttribute("name") || "Unknown";
+        const role = this.getAttribute("role") || "No role";
+
+        this.shadowRoot.innerHTML = `
+          <style>
+            .card {
+              border: 1px solid #ccc;
+              border-radius: 10px;
+              padding: 12px;
+              background: #f7f7f7;
+            }
+            .title {
+              margin: 0 0 6px;
+              font-size: 18px;
+            }
+            .muted {
+              margin: 0 0 10px;
+              color: #555;
+              font-size: 14px;
+            }
+            .light-box {
+              border-top: 1px dashed #aaa;
+              margin-top: 10px;
+              padding-top: 10px;
+            }
+          </style>
+
+          <!-- Ovo je SHADOW DOM -->
+          <div class="card">
+            <h3 class="title">SHADOW DOM: ${name}</h3>
+            <p class="muted">Role: ${role}</p>
+
+            <div class="light-box">
+              <strong>LIGHT DOM kroz &lt;slot&gt;:</strong>
+              <slot></slot>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    customElements.define("user-card", UserCard);
+
+
+    const names = ["Amina", "Haris", "Tarik", "Lejla"];
+    let i = 0;
+
+    document.getElementById("changeNameBtn").addEventListener("click", () => {
+      i = (i + 1) % names.length;
+      document.getElementById("card").setAttribute("name", names[i]);
+    });
+  </script>
+</body>
+</html>
