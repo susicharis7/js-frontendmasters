@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset</title>
+</head>
+<body>
+    <ul id="list">
+        <li data-id="1" data-role="admin">User 1</li>
+        <li data-id="2" data-role="editor">User 2</li>
+        <li data-id="3" data-role="guest">User 3</li>
+    </ul>
+
+
+    <script nodefer>
+        const list = document.getElementById("list");
+
+        list.addEventListener("click", (e) => {
+            const item = e.target;
+
+            if (item.tagName === "LI") {
+                console.log('dataset object: ', item.dataset);
+
+                console.log('id: ', item.dataset.id);
+                console.log('role: ', item.dataset.role);
+            }
+        })
+    </script>
+</body>
+</html>
