@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slots</title>
+</head>
+<body>
+
+    <p>Hi</p>
+    <user-card>
+        <p>This is LIGHT DOM Text</p> <!-- if we don't have <slot> , it will not render -->
+    </user-card>
+    
+
+    <script nodefer>
+        class UserCard extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: "open" });
+
+                this.shadowRoot.innerHTML = `
+                    <div class="card">
+                        <h2>User Card</h2>
+                        <slot></slot>
+                    </div>
+                `
+            };
+
+            
+        };
+
+        customElements.define("user-card", UserCard);
+    </script>
+</body>
+</html>
