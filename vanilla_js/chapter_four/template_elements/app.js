@@ -1,5 +1,5 @@
 const template = document.getElementById("card-template");
-const clone = template.content.cloneNode(true);
+const clone = template.content.cloneNode(true); // true - deep clone (complete clone of template)
 
 clone.querySelector(".title").textContent = "Title";
 clone.querySelector(".description").textContent = "Description";

@@ -2,13 +2,14 @@ class UserCard extends HTMLElement {
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: "open" }); 
     /*
         - creates shadow root object
         - connects it to current element (its host)
         - returns reference on that shadow root (if its open -> it is in this.shadowRoot)
         - so now, instead of this.innerHTML -> this.shadowRoot
         - mode: closed is used for encapsulation, where we hide the implementation
+          in `closed` mode we do not have access to shadowRoot reference outside 
     */
   }
 
