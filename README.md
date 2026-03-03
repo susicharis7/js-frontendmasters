@@ -19,6 +19,9 @@ The path includes multiple JavaScript courses ranging from fundamentals to advan
 
 - ✅ **Course 3:** Vanilla JS: You Might Not Need a Framework
   *(Instructor: Maximiliano Firtman)*
+
+- **Course 4:** Deep JavaScript Foundations, v3
+  *(Instructor: Kyle Simpson)
   
 ---
 
@@ -27,7 +30,7 @@ The path includes multiple JavaScript courses ranging from fundamentals to advan
 - Solutions to course challenges and exercises
 - Notes and explanations I write while learning
 - Small practice snippets and experiments
-- Full project 
+- Full projects
 
 ---
 
