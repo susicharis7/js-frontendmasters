@@ -17,7 +17,7 @@ The path includes multiple JavaScript courses ranging from fundamentals to advan
 - ✅ **Course 2:** The Hard Parts (V2)  
   *(Instructor: Will Sentance)*
 
-- 🔄 **Course 3:** Vanilla JS: You Might Not Need a Framework
+- ✅ **Course 3:** Vanilla JS: You Might Not Need a Framework
   *(Instructor: Maximiliano Firtman)*
   
 ---
@@ -27,6 +27,7 @@ The path includes multiple JavaScript courses ranging from fundamentals to advan
 - Solutions to course challenges and exercises
 - Notes and explanations I write while learning
 - Small practice snippets and experiments
+- Full project 
 
 ---
 
@@ -38,6 +39,7 @@ To build a strong JavaScript foundation and progress from core fundamentals to a
 - Asynchronous JavaScript
 - Promises & the event loop
 - Advanced patterns and reactive thinking
+
 
 ---
 
