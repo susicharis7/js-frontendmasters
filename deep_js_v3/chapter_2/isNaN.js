@@ -5,11 +5,13 @@ myAge - "my son's age"; // NaN
 
 myCatsAge === myCatsAge; // false ?
 
-isNaN(myAge); // false 
-isNaN(myCatsAge); // true
-isNaN("my son's age"); // true ?? it is not a number, true, but is it a NaN value? no - it coerces value to numbers before it checks !
+// isNaN() - prvo radi ToNumber(value), onda provjerava da li je rezultat NaN 
 
-// since ES6, it doesn't do any coercion 
+isNaN(myAge); // false (it is a number)
+isNaN(myCatsAge); // true
+isNaN("my son's age"); // true 
+
+// Doesn't do COERCION like isNaN() (since ES6), it strictly checks if it is a NaN 
 Number.isNaN(myCatsAge); // true
 Number.isNaN("my son's age"); // false 
 
