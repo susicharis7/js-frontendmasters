@@ -36,11 +36,15 @@ function firstHoursAttended(attended, length) {
 
 // Corrected
 function HoursAttended(attended, length) {
-    if (typeof(attended) == "string" && attended.trim() != "" 
-    && typeof(length) == "string" && attended.trim() != "") {
+
+    if (typeof(attended) == "string" && attended.trim() != "") {
         attended = Number(attended);
-        length = Number(attended);
     };
+
+    if (typeof(length) == "string" && length.trim() != "") {
+        length = Number(length);
+    };
+
 
     if (typeof(attended) == "number" && typeof(length) == "number" 
     && attended <= length && attended >= 0 && length >= 0 
