@@ -1,6 +1,56 @@
 // TODO: write the validation functions
+function isValidName(name) {
+   
+    if (typeof(name) == "string" && name.trim().length >= 3 ) {
+        return true;
+    };
+
+    return false;
 
 
+};
+
+// First try
+function firstHoursAttended(attended, length) {
+    if (typeof(attended) == "string" && typeof(attended) == "number"
+        && typeof(length) == "string" && typeof(length) == "number"
+    ) {
+        attended = Number(attended);
+        length = Number(length);
+
+       if (attended >= 0 && length >= 0 && 
+        Number.isInteger(attended) && 
+        Number.isInteger(length) && 
+        attended <= length 
+       ) {
+        return true;
+       } else {
+        return false;
+       }
+
+        
+    };
+
+    return false;
+};
+
+// Corrected
+function HoursAttended(attended, length) {
+    if (typeof(attended) == "string" && attended.trim() != "" 
+    && typeof(length) == "string" && attended.trim() != "") {
+        attended = Number(attended);
+        length = Number(attended);
+    };
+
+    if (typeof(attended) == "number" && typeof(length) == "number" 
+    && attended <= length && attended >= 0 && length >= 0 
+    && Number.isInteger(attended) && Number.isInteger(length)) {
+        return true;
+    };
+
+    return false;
+    
+};
 
 // tests:
 console.log(isValidName("Frank") === true);
