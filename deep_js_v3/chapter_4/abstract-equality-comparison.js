@@ -92,3 +92,8 @@ console.log(5 == new Number(5));
 */
 
 // 10. return false
+
+
+/* 
+ Double equals allow type coercion, while Triple equals dont
+*/
