@@ -15,7 +15,13 @@ function findAll(value, array) {
 			if (value == v) {
 				result.push(v);
 			};
-		} else if (typeof value == "number" && typeof v == "string" && !Object.is(value, -0) && !Object.is(value, NaN) && !Object.is(value, -Infinity) && !Object.is(value, Infinity) && v.trim() != "") {
+		} else if (typeof value == "number" 
+			&& typeof v == "string" 
+			&& !Object.is(value, -0) 
+			&& !Object.is(value, NaN) 
+			&& !Object.is(value, -Infinity) 
+			&& !Object.is(value, Infinity) 
+			&& v.trim() != "") {
 			if (value == v) {
 				result.push(v);
 			};
