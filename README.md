@@ -14,14 +14,14 @@ The path includes multiple JavaScript courses ranging from fundamentals to advan
 - ✅ **Course 1:** JavaScript: From First Steps to Professional  
   *(Instructor: Anjana Vakil)*
 
-- ✅ **Course 2:** The Hard Parts (V2)  
+- ✅ **Course 2:** The Hard Parts (V2)
   *(Instructor: Will Sentance)*
 
 - ✅ **Course 3:** Vanilla JS: You Might Not Need a Framework
   *(Instructor: Maximiliano Firtman)*
 
-- **Course 4:** Deep JavaScript Foundations, v3
-  *(Instructor: Kyle Simpson)
+- ⏳ **Course 4:** Deep JavaScript Foundations, v3
+  *(Instructor: Kyle Simpson)*
   
 ---
 
