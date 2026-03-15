@@ -1,17 +1,17 @@
 var teacher = "Kyle";
 
 function otherClass() {
-    var teacher = "Suzy";
+    var teacher = "Suzy"; // Target position, because it will update binding in this Environment Record at runtime from undefined to Suzy
     console.log("Welcome");
 };
 
 function ask() {
     var question = "Why?";
-    console.log(question);
+    console.log(question); // Source position, because we are taking the value from our Environment Record 
 };
 
-otherClass();
-ask();
+otherClass(); 
+ask(); 
 
 
 /* 
@@ -29,5 +29,7 @@ ask();
       its going to be teacher -> undefined
     - In execution phase, teacher -> Suzy
     - In global scope, we cannot access it, but in otherClass scope, we can access outer scope (teacher => Kyle)
+
+    We also have shadowing definition - it means that identificator from inner scope hides (shadows) the identificator of the same name in the outer scope 
 */
 
